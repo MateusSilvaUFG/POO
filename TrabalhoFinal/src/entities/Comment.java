@@ -1,7 +1,7 @@
 package entities;
 
 public class Comment {
-	private  Integer id;
+	private Integer id;
 	private User user;
 	private String text;
 	

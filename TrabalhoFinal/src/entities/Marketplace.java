@@ -1,7 +1,13 @@
 package entities;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.ArrayList;
+
+
 public class Marketplace {
-	private User = user;
+	private User  user;
 	private Integer id;
 	private String product;
 	private double price;
@@ -15,13 +21,13 @@ public class Marketplace {
 	String date = formatterData.format(now);
 	
 	DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-	String time = formatterHora.forma(now);
+	String time = formatterHora.format(now);
 	
 	public Marketplace() {
 		super();
 	}
 	
-	public marketplace(User user, Integer id, String product, double price, String description) {
+	public Marketplace(User user, Integer id, String product, double price, String description) {
 	super();
 	this.user = user;
 	this.id = id;
@@ -37,7 +43,7 @@ public class Marketplace {
 		this.product = product;
 		this.price = price;
 		this.description = description;
-		this;comments = new ArrayList<>();
+		this.comments = new ArrayList<>();
 	}
 	
 	public Marketplace(Integer id) {
@@ -50,7 +56,7 @@ public class Marketplace {
 		return user;
 	}
 	
-	public Integer getid() {
+	public Integer getId() {
 		return id;
 	}
 	
@@ -63,8 +69,70 @@ public class Marketplace {
 	}
 	
 	public void setProduct(String product) {
-		
+		this.product = product;
 	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription() {
+		this.description = description;
+	}
+	
+	public List<Comments> getComments(){
+		return comments;
+	}
+	
+	public void addComments(Integer id, User user, String text) {
+		comments.add(new Comments(id,user,text));
+	}
+	
+	public void editComments(Integer id, String text) {
+		for (int i = 0; i < Comment.size(); i++) {
+			if(comments.get(i).getId() == id) {
+				comments.get(i).setText(text);
+			}
+		}
+	}
+	
+	public void removeComment(Integer id) {
+		for (int i = 0; i < Comment.size(); i++) {
+			if(comments.get(i).getId() == id) {
+				comments.remove(i);
+			}
+		}
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("{COMMENT DELETED]");
+		System.out.println();
+	}
+	
+	public void showComments() {
+		for(int i = 0; i < Comments.size(); i++) {
+			System.out.println("Comment #" + comments.get(i).getId() + "by" + comments.get(i).getUser().getName()
+					+ "on" + date + "at" + time);
+			System.out.println(comments.get(i).getText());
+			System.out.println();
+		} 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
