@@ -22,23 +22,27 @@ public class Comment {
 		this.text = text;
 	}
 	
-	public Integer getid() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setid(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
-	public User getuser() {
+	public User getUser() {
 		return user;
 	}
 	
-	public void setuser(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	
-	public String getString() {
+	public String getText() {
+		return text;
+	}
+	
+	public void setText(String text) {
 		this.text = text;
 	}
 	
