@@ -5,15 +5,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 
-
 public class Marketplace {
+	
 	private User  user;
 	private Integer id;
 	private String product;
-	private double price;
+	private Double price;
 	private String description;
 	
-	private List<Comment> comment;
+	private List<Comment> comments;
 
 	LocalDateTime  now = LocalDateTime.now();
 
@@ -27,7 +27,7 @@ public class Marketplace {
 		super();
 	}
 	
-	public Marketplace(User user, Integer id, String product, double price, String description) {
+	public Marketplace(User user, Integer id, String product, Double price, String description) {
 	super();
 	this.user = user;
 	this.id = id;
@@ -72,8 +72,12 @@ public class Marketplace {
 		this.product = product;
 	}
 	
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
+	}
+	
+	public void setPrice(Double price) {
+	this.price = price;
 	}
 	
 	public String getDescription() {
@@ -84,16 +88,16 @@ public class Marketplace {
 		this.description = description;
 	}
 	
-	public List<Comments> getComments(){
+	public List<Comment> getComments(){
 		return comments;
 	}
 	
 	public void addComments(Integer id, User user, String text) {
-		comments.add(new Comments(id,user,text));
+		comments.add(new Comment(id,user,text));
 	}
 	
 	public void editComments(Integer id, String text) {
-		for (int i = 0; i < Comment.size(); i++) {
+		for (int i = 0; i < comments.size(); i++) {
 			if(comments.get(i).getId() == id) {
 				comments.get(i).setText(text);
 			}
@@ -101,7 +105,7 @@ public class Marketplace {
 	}
 	
 	public void removeComment(Integer id) {
-		for (int i = 0; i < Comment.size(); i++) {
+		for (int i = 0; i < comments.size(); i++) {
 			if(comments.get(i).getId() == id) {
 				comments.remove(i);
 			}
@@ -112,7 +116,7 @@ public class Marketplace {
 	}
 	
 	public void showComments() {
-		for(int i = 0; i < Comments.size(); i++) {
+		for(int i = 0; i < comments.size(); i++) {
 			System.out.println("Comment #" + comments.get(i).getId() + "by" + comments.get(i).getUser().getName()
 					+ "on" + date + "at" + time);
 			System.out.println(comments.get(i).getText());
