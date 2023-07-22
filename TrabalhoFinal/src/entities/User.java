@@ -280,4 +280,153 @@ public class User extends Comment {
 			System.out.println();
 		}
 	}
+	
+	public void showYourDevEvents() {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		for( int i = 0; i < dev.size(); i++) {
+			System.out.println();
+			System.out.println("Dev Event #" + dev.get(i).getEventId() + " " + " by " + name + ", created on" + date
+					+ " at " + time);
+			System.out.println("We presents to you " + dev.get(i).getEventName() + "!");
+			System.out.println("Save the date " + dev.get(i).getEventDate() + " at the	 " + dev.get(i).getEventLocal());
+			System.out.println("Info " + dev.get(i).getEventDescription());
+			System.out.println();
+		}
+	}
+	
+	public void addDevEvent(User user, Integer eventId, String eventName, String eventDate, String eventLocal,
+			String eventDescription) {
+		dev.add(new DevEvents(user, eventId, eventName, eventDate, eventLocal, eventDescription));
+		}
+	
+	public void editDevEventName(Integer eventId, String eventName) {
+		for (int i = 0; i < dev.size(); i++) {
+			if (dev.get(i).getEventId() == eventId) {
+				dev.get(i).setEventName(eventName);
+			}
+		}
+	}
+	
+	public void editDevEventDate(Integer eventId, String eventDate) {
+		for (int i = 0; i < dev.size(); i++ ) {
+			if (dev.get(i).getEventId() == eventId) {
+				dev.get(i).setEventDate(eventDate);
+			}
+		}
+	}
+	
+	public void editDevEventLocal(Integer eventId, String eventLocal) {
+		for (int i = 0; i < dev.size(); i++) {
+			if (dev.get(i).getEventId() == eventId) {
+				dev.get(i).setEventLocal(eventLocal);
+			}
+		}
+	}
+	
+	public void editDevEventDescription(Integer eventId, String eventDescription) {
+		for (int i = 0; i < dev.size(); i++) {
+			if (dev.get(i).getEventId() == eventId) {
+				dev.get(i).setEventDescription(eventDescription);
+			}
+		}
+	}
+	
+	public void removeDevEvent(Integer eventId) {
+		for (int i = 0; i< dev.size(); i++) {
+			if (dev.get(i).getEventId() == eventId) {
+				dev.remove(i);
+			}
+		}
+		System.out.println();
+		System.out.println("{EVENT DELETED}");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	}
+	
+	// Game Events
+	
+	public void showGameEvents() {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		for( int i = 0; i < game.size(); i++) {
+			System.out.println();
+			System.out.println("game Event #" + game.get(i).getEventId() + " " + game.get(i).getEventName() + " by "
+			+ name + ", created on" + date + " at " + time);
+			System.out.
+					   println("Save the date " + game.get(i).getEventDate() + " at the	 " + game.get(i).getEventLocal());
+			System.out.println("Game " + game.get(i).getGameName());
+			System.out.println("Info " + game.get(i).getEventDescription());
+			game.get(i).showComments();
+			System.out.println();
+		}
+	}
+	
+	public void showYourGameEvents() {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		for( int i = 0; i < dev.size(); i++) {
+			System.out.println();
+			System.out.println("game Event #" + game.get(i).getEventId() + " " + game.get(i).getEventName() + " by "
+					+ name + ", created on" + date + " at " + time);
+			System.out.
+						println("Save the date " + game.get(i).getEventDate() + " at the	 " + game.get(i).getEventLocal());
+			System.out.println("Game " + game.get(i).getGameName());
+			System.out.println("Info " + game.get(i).getEventDescription());
+			System.out.println();
+		}
+	}
+	
+	public void addGameEvent(User user, Integer eventId, String eventName, String eventDate, String eventLocal,
+			String eventDescription, String gameName) {
+		game.add(new GameEvents(user, eventId, eventName, eventDate, eventLocal, eventDescription, gameName));
+		}
+	
+	public void editGameEventName(Integer eventId, String eventName) {
+		for (int i = 0; i < game.size(); i++) {
+			if (game.get(i).getEventId() == eventId) {
+				game.get(i).setEventName(eventName);
+			}
+		}
+	}
+	
+	public void editGameEventsDate(Integer eventId, String eventDate) {
+		for (int i = 0; i < game.size(); i++ ) {
+			if (game.get(i).getEventId() == eventId) {
+				game.get(i).setEventDate(eventDate);
+			}
+		}
+	}
+	
+	public void editGameEventsLocal(Integer eventId, String eventLocal) {
+		for (int i = 0; i < game.size(); i++) {
+			if (game.get(i).getEventId() == eventId) {
+				game.get(i).setEventLocal(eventLocal);
+			}
+		}
+	}
+	
+	public void editGameEventsDescription(Integer eventId, String eventDescription) {
+		for (int i = 0; i < game.size(); i++) {
+			if (game.get(i).getEventId() == eventId) {
+				game.get(i).setEventDescription(eventDescription);
+			}
+		}
+	}
+	
+	public void editGameEventGameName(Integer eventId, String gameName) {
+		for (int i = 0; i < game.size(); i++) {
+			if (game.get(i).getEventId() == eventId) {
+				game.get(i).setGameName(gameName);
+			}
+		}
+	}
+	
+	public void removeGameEvents(Integer eventId) {
+		for (int i = 0; i< game.size(); i++) {
+			if (game.get(i).getEventId() == eventId) {
+				game.remove(i);
+			}
+		}
+		System.out.println();
+		System.out.println("{EVENT DELETED}");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	}
+	
 }
