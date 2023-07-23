@@ -2,9 +2,10 @@ package entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Events {
+public abstract class Events {
 
 	private User user;
 	private Integer eventId;
@@ -87,7 +88,7 @@ public class Events {
 		this.eventDescription = eventDescription;
 	}
 	
-	public List<Comments> getComments(){
+	public List<Comment> getComments(){
 		return comments;
 	}
 	
