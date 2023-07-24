@@ -1,9 +1,2 @@
-/**
- * 
- */
-/**
- * @author Notebook-Tero
- *
- */
-module TrabalhoFinal {
+module POO_1 {
 }
