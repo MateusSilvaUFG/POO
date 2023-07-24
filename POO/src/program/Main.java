@@ -1,9 +1,8 @@
-package entities;
+package program;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 
 import entities.User;
 
@@ -19,13 +18,6 @@ public class Main {
 	Scanner sc = new Scanner(System.in);
 
 	while (true) {
-	    System.out.println("███████╗██╗  ██╗██╗   ██╗███╗   ██╗███████╗████████╗    ██╗    ██╗██╗ ");
-	    System.out.println("██╔════╝██║ ██╔╝╚██╗ ██╔╝████╗  ██║██╔════╝╚══██╔══╝   ██╔╝   ██╔╝╚██╗");
-	    System.out.println("███████╗█████╔╝  ╚████╔╝ ██╔██╗ ██║█████╗     ██║      ██║   ██╔╝  ██║");
-	    System.out.println("╚════██║██╔═██╗   ╚██╔╝  ██║╚██╗██║██╔══╝     ██║      ██║  ██╔╝   ██║");
-	    System.out.println("███████║██║  ██╗   ██║   ██║ ╚████║███████╗   ██║      ╚██╗██╔╝   ██╔╝");
-	    System.out.println("╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═══╝╚══════╝   ╚═╝       ╚═╝╚═╝    ╚═╝ ");
-	    System.out.println("                   {SKYNET(/) - CONNECTING DEV'S}");
 	    System.out.println();
 	    do {
 		System.out.println("{1} NEW ACCOUNT ~ {2} LOGIN");
@@ -69,13 +61,6 @@ public class Main {
 
 	    do {
 		System.out.println();
-		System.out.println("███████╗██╗  ██╗██╗   ██╗███╗   ██╗███████╗████████╗    ██╗    ██╗██╗ ");
-		System.out.println("██╔════╝██║ ██╔╝╚██╗ ██╔╝████╗  ██║██╔════╝╚══██╔══╝   ██╔╝   ██╔╝╚██╗");
-		System.out.println("███████╗█████╔╝  ╚████╔╝ ██╔██╗ ██║█████╗     ██║      ██║   ██╔╝  ██║");
-		System.out.println("╚════██║██╔═██╗   ╚██╔╝  ██║╚██╗██║██╔══╝     ██║      ██║  ██╔╝   ██║");
-		System.out.println("███████║██║  ██╗   ██║   ██║ ╚████║███████╗   ██║      ╚██╗██╔╝   ██╔╝");
-		System.out.println("╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═══╝╚══════╝   ╚═╝       ╚═╝╚═╝    ╚═╝ ");
-		System.out.println("                   {SKYNET(/) - CONNECTING DEV'S}");
 		System.out.println();
 		System.out.println("                    {LOGGED AS " + users.get(loggedUser).getName() + "}");
 		users.get(loggedUser).showFriends();
@@ -557,7 +542,6 @@ public class Main {
 		    System.out.println();
 		    System.out.println("{1} NEW EVENT");
 		    System.out.println("{2} LIST YOUR DEV EVENTS");
-		    System.out.println("{3} LIST YOUR GAME EVENTS");
 		    System.out.println("{4} LIST ALL EVENTS");
 		    System.out.println("{5} MAIN MENU");
 		    System.out.print(":~$ ");
@@ -570,7 +554,6 @@ public class Main {
 			System.out.println("{EVENT TYPE}");
 			System.out.println();
 			System.out.println("{1} DEV EVENT");
-			System.out.println("{2} GAME EVENT");
 			System.out.println("{3} MAIN MENU");
 			System.out.println(":~$ ");
 			tempChoose = sc.nextInt();
@@ -593,24 +576,6 @@ public class Main {
 			    tempChoose = 0;
 			    break;
 			case 2:
-			    System.out.print("EVENT'S ID:~$ ");
-			    Integer gameEventId = sc.nextInt();
-			    sc.nextLine();
-			    System.out.print("EVENT'S NAME:~$ ");
-			    String gameEventName = sc.nextLine();
-			    System.out.print("EVENT'S DATE (dd/MM/yyyy):~$ ");
-			    String gameEventDate = sc.nextLine();
-			    System.out.print("EVENT'S LOCAL:~$ ");
-			    String gameEventLocal = sc.nextLine();
-			    System.out.print("EVENT'S DESCRIPTION:~$ ");
-			    String gameEventDescription = sc.nextLine();
-			    System.out.print("EVENT'S MAIN GAME:~$ ");
-			    String gameName = sc.nextLine();
-			    users.get(loggedUser).addGameEvent(users.get(loggedUser), gameEventId, gameEventName,
-				    gameEventDate, gameEventLocal, gameEventDescription, gameName);
-			    tempChoose = 0;
-			    break;
-			case 3:
 			    tempChoose = 0;
 			    break;
 			}
@@ -687,91 +652,12 @@ public class Main {
 			    } while (tempChoose != 3);
 			}
 			break;
-		    case 3:
-			if (users.get(loggedUser).getGame().isEmpty()) {
-			    System.out.println("{YOU DON'T HAVE ANY GAME EVENT YET}");
-			} else {
-			    users.get(loggedUser).showGameEvents();
-			    do {
-				System.out.println();
-				System.out.println("{1} EDIT EVENT ~ {2} REMOVE EVENT ~ {3} MAIN MENU");
-				tempChoose = sc.nextInt();
-				System.out.println();
-				switch (tempChoose) {
-				case 1:
-				    sc.nextLine();
-				    users.get(loggedUser).showYourGameEvents();
-				    System.out.println(
-					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				    System.out.print("SELECT THE ID OF A EVENT THAT YOU WANT TO EDIT:~$ ");
-				    Integer eventId = sc.nextInt();
-				    sc.nextLine();
-				    System.out.println();
-				    System.out.println("SELECT EVENT'S INFO THAT YOU WANT TO EDIT");
-				    System.out.println(
-					    "{1} NAME ~ {2} DATE ~ {3} LOCAL ~ {4} DESCRIPTION ~ {5} GAME NAME ~ {6} CANCEL");
-				    System.out.println(":~$ ");
-				    tempChoose = sc.nextInt();
-				    sc.nextLine();
-				    switch (tempChoose) {
-				    case 1:
-					System.out.print("NEW EVENT NAME:~$ ");
-					String editedGameEventName = sc.nextLine();
-					users.get(loggedUser).editGameEventName(eventId, editedGameEventName);
-					tempChoose = 0;
-					break;
-				    case 2:
-					System.out.print("NEW EVENT'S DATE:~$ ");
-					String editedGameEventDate = sc.nextLine();
-					users.get(loggedUser).editGameEventDate(eventId, editedGameEventDate);
-					tempChoose = 0;
-					break;
-				    case 3:
-					System.out.print("NEW EVENT'S LOCAL:~$ ");
-					String editedGameEventLocal = sc.nextLine();
-					users.get(loggedUser).editGameEventLocal(eventId, editedGameEventLocal);
-					tempChoose = 0;
-					break;
-				    case 4:
-					System.out.print("NEW EVENT'S DESCRIPTION:~$ ");
-					String editedGameEventDesc = sc.nextLine();
-					users.get(loggedUser).editGameEventDescription(eventId, editedGameEventDesc);
-					tempChoose = 0;
-					break;
-				    case 5:
-					System.out.print("NEW EVENT'S MAIN GAME:~$ ");
-					String editedGameEventGame = sc.nextLine();
-					users.get(loggedUser).editGameEventGameName(eventId, editedGameEventGame);
-					tempChoose = 0;
-					break;
-				    case 6:
-					tempChoose = 0;
-					break;
-				    }
-				    break;
-				case 2:
-				    sc.nextLine();
-				    users.get(loggedUser).showGameEvents();
-				    System.out.println(
-					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				    System.out.print("SELECT THE ID OF THE EVENT THAT YOU WANT TO REMOVE~$ ");
-				    Integer eventGameRemoveId = sc.nextInt();
-				    sc.nextLine();
-				    users.get(loggedUser).removeGameEvent(eventGameRemoveId);
-				    break;
-				case 3:
-				    break;
-				}
-			    } while (tempChoose != 3);
-			}
-			break;
 		    case 4:
 			System.out.println(
 				"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			System.out.println("{EVENT TYPE}");
 			System.out.println();
 			System.out.println("{1} DEV EVENT");
-			System.out.println("{2} GAME EVENT");
 			System.out.println("{3} MAIN MENU");
 			System.out.println(":~$ ");
 			tempChoose = sc.nextInt();
@@ -862,93 +748,7 @@ public class Main {
 				}
 			    } while (tempChoose != 4);
 			    wannaComment = 'y';
-			    break;
-			case 2:
-			    System.out.println("{GAME EVENTS}");
-			    for (i = 0; i < users.size(); i++) {
-				if (users.get(i).getGame().isEmpty()) {
-				} else {
-				    users.get(i).showGameEvents();
-				    System.out.println();
-				}
-			    }
-			    do {
-				System.out.println(
-					"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				System.out.println("{1} TO MAKE A COMMENT");
-				System.out.println("{2} TO EDIT A COMMENT");
-				System.out.println("{3} TO DELETE A COMMENT");
-				System.out.println("{4} MAIN MENU");
-				System.out.print(":~$ ");
-				tempChoose = sc.nextInt();
-				switch (tempChoose) {
-				case 1:
-				    System.out.println(
-					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				    while (wannaComment == 'Y' || wannaComment == 'y') {
-					sc.nextLine();
-					System.out
-						.print("SELECT THE ID OF THE GAME EVENT THAT YOU WANT TO COMMENT:~$ ");
-					Integer idGameComment = sc.nextInt();
-					System.out.print("COMMENT ID:~$ ");
-					Integer idComment = sc.nextInt();
-					sc.nextLine();
-					System.out.print("COMMENT TEXT:~$ ");
-					String textComment = sc.nextLine();
-					for (i = 0; i < users.size(); i++) {
-					    for (int j = 0; j < users.get(i).getGame().size(); j++) {
-						if (users.get(i).getGame().get(j).getEventId() == idGameComment) {
-						    users.get(i).getGame().get(j).addComment(idComment,
-							    users.get(loggedUser), textComment);
-						}
-					    }
-					}
-					System.out.println();
-					System.out.print("ANOTHER COMMENT (Y/n):~$ ");
-					System.out.println();
-					wannaComment = sc.next().charAt(0);
-				    }
-				    break;
-				case 2:
-				    System.out.println(
-					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				    System.out.print("SELECT THE ID OF THE GAME EVENT:~$ ");
-				    Integer idGameEventEdit = sc.nextInt();
-				    System.out.print("SELECT THE ID OF THE COMMENT:~$ ");
-				    Integer idCommentEdit = sc.nextInt();
-				    sc.nextLine();
-				    System.out.print("NEW COMMENT TEXT:~$ ");
-				    String textCommentEdit = sc.nextLine();
-				    for (i = 0; i < users.size(); i++) {
-					for (int j = 0; j < users.get(i).getGame().size(); j++) {
-					    if (users.get(i).getGame().get(j).getEventId() == idGameEventEdit) {
-						users.get(i).getGame().get(j).editComment(idCommentEdit,
-							textCommentEdit);
-					    }
-					}
-				    }
-				    break;
-				case 3:
-				    System.out.println(
-					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				    sc.nextLine();
-				    System.out.print("SELECT THE ID OF THE GAME EVENT:~$ ");
-				    Integer idGameEventDelete = sc.nextInt();
-				    System.out.print("SELECT THE ID OF THE COMMENT:~$ ");
-				    Integer idCommentDelete = sc.nextInt();
-				    for (i = 0; i < users.size(); i++) {
-					for (int j = 0; j < users.get(i).getGame().size(); j++) {
-					    if (users.get(i).getGame().get(j).getEventId() == idGameEventDelete) {
-						users.get(i).getGame().get(j).removeComment(idCommentDelete);
-					    }
-					}
-				    }
-				    break;
-				case 4:
-				    break;
-				}
-			    } while (tempChoose != 4);
-			    wannaComment = 'y';
+	
 			    break;
 			case 3:
 			    break;
