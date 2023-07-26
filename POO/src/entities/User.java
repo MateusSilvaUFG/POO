@@ -17,7 +17,6 @@ public class User extends Comment {
     private List<Post> posts;
     private List<Follow> followers;
     private List<DevEvents> dev;
-    private List<GameEvents> game;
 
     LocalDateTime now = LocalDateTime.now();
 
@@ -42,7 +41,6 @@ public class User extends Comment {
 	this.posts = new ArrayList<>();
 	this.followers = new ArrayList<>();
 	this.dev = new ArrayList<>();
-	this.game = new ArrayList<>();
     }
 
     public User(String name, String birthdate, String relationship) {
@@ -53,7 +51,6 @@ public class User extends Comment {
 	this.posts = new ArrayList<>();
 	this.followers = new ArrayList<>();
 	this.dev = new ArrayList<>();
-	this.game = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -112,9 +109,7 @@ public class User extends Comment {
 	return dev;
     }
 
-    public List<GameEvents> getGame() {
-	return game;
-    }
+
 
     // MARKETPLACE
 
@@ -342,90 +337,5 @@ public class User extends Comment {
 	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
-//GAME EVENTS
 
-    public void showGameEvents() {
-	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-	for (int i = 0; i < game.size(); i++) {
-	    System.out.println();
-	    System.out.println("Game Event #" + game.get(i).getEventId() + " " + game.get(i).getEventName() + " by "
-		    + name + ", created on " + date + " at " + time);
-	    System.out
-		    .println("Save the date " + game.get(i).getEventDate() + " at the " + game.get(i).getEventLocal());
-	    System.out.println("Game: " + game.get(i).getGameName());
-	    System.out.println("Info: " + game.get(i).getEventDescription());
-	    game.get(i).showComments();
-	    System.out.println();
-	}
-    }
-
-    public void showYourGameEvents() {
-	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-	for (int i = 0; i < game.size(); i++) {
-	    System.out.println();
-	    System.out.println("Game Event #" + game.get(i).getEventId() + " " + game.get(i).getEventName() + " by "
-		    + name + " created on " + date + " at " + time);
-	    System.out
-		    .println("Save the date " + game.get(i).getEventDate() + " at the " + game.get(i).getEventLocal());
-	    System.out.println("Game: " + game.get(i).getGameName());
-	    System.out.println("Info " + game.get(i).getEventDescription());
-	    System.out.println();
-	}
-    }
-
-    public void addGameEvent(User user, Integer eventId, String eventName, String eventDate, String eventLocal,
-	    String eventDescription, String gameName) {
-	game.add(new GameEvents(user, eventId, eventName, eventDate, eventLocal, eventDescription, gameName));
-    }
-
-    public void editGameEventName(Integer eventId, String eventName) {
-	for (int i = 0; i < game.size(); i++) {
-	    if (game.get(i).getEventId() == eventId) {
-		game.get(i).setEventName(eventName);
-	    }
-	}
-    }
-
-    public void editGameEventDate(Integer eventId, String eventDate) {
-	for (int i = 0; i < game.size(); i++) {
-	    if (game.get(i).getEventId() == eventId) {
-		game.get(i).setEventDate(eventDate);
-	    }
-	}
-    }
-
-    public void editGameEventLocal(Integer eventId, String eventLocal) {
-	for (int i = 0; i < game.size(); i++) {
-	    if (game.get(i).getEventId() == eventId) {
-		game.get(i).setEventLocal(eventLocal);
-	    }
-	}
-    }
-
-    public void editGameEventDescription(Integer eventId, String eventDescription) {
-	for (int i = 0; i < game.size(); i++) {
-	    if (game.get(i).getEventId() == eventId) {
-		game.get(i).setEventDescription(eventDescription);
-	    }
-	}
-    }
-
-    public void editGameEventGameName(Integer eventId, String gameName) {
-	for (int i = 0; i < game.size(); i++) {
-	    if (game.get(i).getEventId() == eventId) {
-		game.get(i).setGameName(gameName);
-	    }
-	}
-    }
-
-    public void removeGameEvent(Integer eventId) {
-	for (int i = 0; i < game.size(); i++) {
-	    if (game.get(i).getEventId() == eventId) {
-		game.remove(i);
-	    }
-	}
-	System.out.println();
-	System.out.println("{EVENT DELETED}");
-	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    }
 }
