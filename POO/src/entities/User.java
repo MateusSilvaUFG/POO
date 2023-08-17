@@ -265,7 +265,7 @@ public class User extends Comment {
 	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	for (int i = 0; i < dev.size(); i++) {
 	    System.out.println();
-	    System.out.println("Dev Event #" + dev.get(i).getEventId() + " " + " by " + name + ", created on " + date
+	    System.out.println("Event #" + dev.get(i).getEventId() + " " + " by " + name + ", created on " + date
 		    + " at " + time);
 	    System.out.println("We presents to you " + dev.get(i).getEventName() + "!");
 	    System.out.println("Save the date " + dev.get(i).getEventDate() + " at the " + dev.get(i).getEventLocal());
@@ -280,7 +280,7 @@ public class User extends Comment {
 	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	for (int i = 0; i < dev.size(); i++) {
 	    System.out.println();
-	    System.out.println("Dev Event #" + dev.get(i).getEventId() + " " + " by " + name + " created on " + date
+	    System.out.println("Event #" + dev.get(i).getEventId() + " " + " by " + name + " created on " + date
 		    + " at " + time);
 	    System.out.println("We presents to you " + dev.get(i).getEventName() + "!");
 	    System.out.println("Save the date " + dev.get(i).getEventDate() + " at the " + dev.get(i).getEventLocal());
