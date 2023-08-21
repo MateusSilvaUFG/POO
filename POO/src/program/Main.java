@@ -12,7 +12,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-	int i = 0, loggedUser = -1;
+	int i = 0, loggedUser = -1; 
+	boolean isValidChoice = false;
 	char wannaComment = 'y';
 
 
@@ -95,8 +96,24 @@ public class Main {
 		System.out.println("{5} EVENTS");
 		System.out.println("{6} LOGOUT");
 		System.out.print(":~$ ");
-		choose = sc.nextInt();
-		System.out.println();
+
+	    isValidChoice = false;
+	    while (!isValidChoice) {
+            try {
+            	choose = sc.nextInt();
+                if (choose >= 1 && choose <= 6) {
+                    isValidChoice = true;
+                } else {
+                    System.out.println("Please enter a valid option (1, 2, 3, 4, 5 or 6).");
+                    System.out.print(":~$ ");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid option (1, 2, 3, 4, 5 or 6).");
+                sc.nextLine(); // Clear the invalid input from the scanner buffer
+            }
+        }
+	    System.out.println();
+	    
 		if (choose == 1) {
 		    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		    System.out.println("{WHICH INFORMATION DO YOU WANT TO SET?}");
@@ -108,7 +125,23 @@ public class Main {
 		    System.out.println("[5] RELATIONSHIP: " + userManager.getUsers().get(loggedUser).getRelationship());
 		    System.out.println("[6] MAIN MENU");
 		    System.out.print(":~$ ");
-		    tempChoose = sc.nextInt();
+		    
+		    isValidChoice = false;
+		    while (!isValidChoice) {
+	            try {
+	                tempChoose = sc.nextInt();
+	                if (tempChoose >= 1 && tempChoose <= 6) {
+	                    isValidChoice = true;
+	                } else {
+	                	System.out.println("Please enter a valid option (1, 2, 3, 4, 5 or 6).");
+	                    System.out.print(":~$ ");
+	                }
+	            } catch (InputMismatchException e) {
+	                System.out.println("Invalid input. Please enter a valid option (1, 2, 3, 4, 5 or 6).");
+	                sc.nextLine(); // Clear the invalid input from the scanner buffer
+	            }
+	        }
+		    
 		    switch (tempChoose) {
 		    case 1:
 			System.out.println(
@@ -179,27 +212,44 @@ public class Main {
 		    System.out.println("{4} MAIN MENU");
 		    System.out.print(":~$ ");
 		    System.out.println();
-		    tempChoose = sc.nextInt();
+		    
+		     isValidChoice = false;
+		    while (!isValidChoice) {
+	            try {
+	                tempChoose = sc.nextInt();
+	                if (tempChoose >= 1 && tempChoose <= 4) {
+	                    isValidChoice = true;
+	                } else {
+	                    System.out.println("Please enter a valid option (1, 2, 3 or 4).");
+	                    System.out.print(":~$ ");
+	                }
+	            } catch (InputMismatchException e) {
+	                System.out.println("Invalid input. Please enter a valid number (1, 2, or 3).");
+	                sc.nextLine(); // Clear the invalid input from the scanner buffer
+	            }
+	        }
+		    
+		   
 		    System.out.println();
 		    	switch (tempChoose) {
-				   case 1:
-							Integer idPost = null;
-							while (idPost == null) {
-								System.out.print("POST ID:~$ ");
-								try {
-									idPost = sc.nextInt();
-								} catch (InputMismatchException e) {
-									System.out.println("Invalid input. Please enter a valid number.");
-									sc.nextLine(); // Clear the invalid input from the scanner buffer
+					   case 1:
+								Integer idPost = null;
+								while (idPost == null) {
+									System.out.print("POST ID:~$ ");
+									try {
+										idPost = sc.nextInt();
+									} catch (InputMismatchException e) {
+										System.out.println("Invalid input. Please enter a valid number.");
+										sc.nextLine(); // Clear the invalid input from the scanner buffer
+									}
 								}
-							}
-							sc.nextLine(); // Consume the newline character
-
-							System.out.print("POST CONTENT:~$ ");
-							String content = sc.nextLine();
-							userManager.getUsers().get(loggedUser).addPost(userManager.getUsers().get(loggedUser), idPost, content);
-							System.out.println();
-							break;
+								sc.nextLine(); // Consume the newline character
+	
+								System.out.print("POST CONTENT:~$ ");
+								String content = sc.nextLine();
+								userManager.getUsers().get(loggedUser).addPost(userManager.getUsers().get(loggedUser), idPost, content);
+								System.out.println();
+								break;
 
 				   case 2:
 						if (userManager.getUsers().get(loggedUser).getPosts().isEmpty()) {
@@ -211,7 +261,7 @@ public class Main {
 						        System.out.println("{1} EDIT POST ~ {2} REMOVE POST ~ {3} MAIN MENU");
 						        System.out.print(":~$ ");
 				   
-						        boolean isValidChoice = false;
+						         isValidChoice = false;
 
 						        while (!isValidChoice) {
 						            try {
@@ -306,36 +356,63 @@ public class Main {
 		    System.out.println("{3} LIST ALL SALES");
 		    System.out.println("{4} MAIN MENU");
 		    System.out.print(":~$ ");
-		    tempChoose = sc.nextInt();
+		    isValidChoice = false;
+		    while (!isValidChoice) {
+		    						            try {
+		    						                tempChoose = sc.nextInt();
+		    						                if (tempChoose >= 1 && tempChoose <= 4) {
+		    						                    isValidChoice = true;
+		    						                } else {
+		    						                    System.out.println("Please enter a valid option (1, 2, 3 or 4).");
+		    						                    System.out.print(":~$ ");
+		    						                }
+		    						            } catch (InputMismatchException e) {
+		    						                System.out.println("Invalid input. Please enter a valid number (1, 2, 3 or 4).");
+		    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+		    						            }
+		    						        }
 		    System.out.println();
 		    switch (tempChoose) {
-		    case 1:
-		        do {
-		            System.out.println(
-		                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		            System.out.print("PRODUCT'S ID:~$ ");
-		            
-		            try {
-		                Integer productIdAdd = sc.nextInt();
-		                sc.nextLine();
-		                System.out.print("PRODUCT:~$ ");
-		                String product = sc.nextLine();
-		                System.out.print("PRICE ($):~$ ");
-		                Double price = sc.nextDouble();
-		                sc.nextLine();
-		                System.out.print("PRODUCT DESCRIPTION:~$ ");
-		                String description = sc.nextLine();
-		                userManager.getUsers().get(loggedUser).addProduct(userManager.getUsers().get(loggedUser), productIdAdd, product, price,
-		                    description);
-		                break; // Exit the loop if successful input
-		            } catch (InputMismatchException e) {
-		                System.out.println("Invalid input. Please enter a valid integer for the PRODUCT'S ID.");
-		                sc.nextLine(); // Clear the invalid input from the scanner buffer
-		            }
-		        } while (true); // Continue until a valid input is provided
-		        break;
-
-			    case 2:
+		    case 1: // novro produto
+		    	System.out.println(
+						"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+					
+					
+					Integer productIdAdd = null;
+					while (productIdAdd == null) {
+						System.out.print("PRODUCT'S ID:~$ ");
+						try {
+							productIdAdd = sc.nextInt();
+						} catch (InputMismatchException e) {
+							System.out.println("Invalid input. Please enter a valid number.");
+							sc.nextLine(); // Clear the invalid input from the scanner buffer
+						}
+					}
+					sc.nextLine(); // Consume the newline character
+					
+					System.out.print("PRODUCT:~$ ");
+					String product = sc.nextLine();
+					
+					Double price;
+					price = null;
+					while (price == null) {
+						System.out.print("PRICE ($):~$ ");
+						try {
+							 price = sc.nextDouble();
+						} catch (InputMismatchException e) {
+							System.out.println("Invalid input. Please enter a valid number.");
+							sc.nextLine(); // Clear the invalid input from the scanner buffer
+						}
+					}
+					sc.nextLine(); // Consume the newline character
+					
+					System.out.print("PRODUCT DESCRIPTION:~$ ");
+					String description = sc.nextLine();
+					userManager.getUsers().get(loggedUser).addProduct(userManager.getUsers().get(loggedUser), productIdAdd, product, price,
+						description);
+					break;
+			    case 2: //editar produto
+			    	
 					if (userManager.getUsers().get(loggedUser).getMarketplace().isEmpty()) {
 					    System.out.println("{YOU DON'T HAVE ANY PRODUCT YET}");
 					} else {
@@ -344,8 +421,26 @@ public class Main {
 						System.out.println();
 						System.out.println("{1} EDIT SALE ~ {2} REMOVE SALE ~ {3} MAIN MENU");
 						System.out.print(":~$ ");
-						tempChoose = sc.nextInt();
+						
+						isValidChoice = false;
+						while (!isValidChoice) {
+											            try {
+											                tempChoose = sc.nextInt();
+											                if (tempChoose >= 1 && tempChoose <= 3) {
+											                    isValidChoice = true;
+											                } else {
+											                    System.out.println("Please enter a valid option (1, 2, or 3).");
+											                    System.out.print(":~$ ");
+											                }
+											            } catch (InputMismatchException e) {
+											                System.out.println("Invalid input. Please enter a valid number (1, 2, or 3).");
+											                sc.nextLine(); // Clear the invalid input from the scanner buffer
+											            }
+											        }
+						
+						
 						System.out.println();
+						
 						switch (tempChoose) {
 							case 1:
 							    sc.nextLine();
@@ -353,13 +448,43 @@ public class Main {
 							    System.out.println(
 								    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 							    System.out.print("SELECT THE ID OF A PRODUCT THAT YOU WANT TO EDIT:~$ ");
-							    Integer productId = sc.nextInt();
-							    sc.nextLine();
+							    
+							    Integer productId = null;
+							    isValidChoice = false;
+							    while (!isValidChoice) {
+							    						            try {
+							    						                productId = sc.nextInt();
+							    						                if (productId > -1) {
+							    						                    isValidChoice = true;
+							    						                } 
+							    						            } catch (InputMismatchException e) {
+							    						                System.out.println("Invalid input. Please enter a valid number");
+							    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+							    						            }
+							    						        }
+							    
+							   
 							    System.out.println();
 							    System.out.println("SELECT PRODUCT'S INFO THAT YOU WANT TO EDIT");
 							    System.out.println("{1} NAME ~ {2} PRICE ~ {3} DESCRIPTION ~ {4} CANCEL");
-							    System.out.println(":~$ ");
-							    tempChoose = sc.nextInt();
+							    
+							    
+							    isValidChoice = false;
+							    while (!isValidChoice) {
+							    						            try {
+							    						            	System.out.println(":~$ ");
+							    						            	tempChoose  = sc.nextInt();
+							    						                if (tempChoose  >= 1 && tempChoose  <= 4) {
+							    						                    isValidChoice = true;
+							    						                } else {
+							    						                    System.out.println("Please enter a valid option (1, 2, 3 or 4).");
+							    						                    System.out.print(":~$ ");
+							    						                }
+							    						            } catch (InputMismatchException e) {
+							    						                System.out.println("Invalid input. Please enter a valid number (1, 2, 3 or 4).");
+							    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+							    						            }
+							    						        }
 							    sc.nextLine();
 							    
 						    switch (tempChoose) {
@@ -392,8 +517,22 @@ public class Main {
 				    System.out.println(
 					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 				    System.out.print("SELECT THE ID OF A PRODUCT THAT YOU WANT TO REMOVE:~$ ");
-				    Integer productRemoveId = sc.nextInt();
-				    sc.nextLine();
+				    
+				    Integer productRemoveId = null;
+				    isValidChoice = false;
+				    while (!isValidChoice) {
+				    						            try {
+				    						            	productRemoveId = sc.nextInt();
+				    						                if (productRemoveId > -1) {
+				    						                    isValidChoice = true;
+				    						                } 
+				    						            } catch (InputMismatchException e) {
+				    						                System.out.println("Invalid input. Please enter a valid number");
+				    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+				    						            }
+				    						        }
+				    
+				    
 				    userManager.getUsers().get(loggedUser).removeProduct(productRemoveId);
 				    break;
 				case 3:
