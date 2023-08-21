@@ -536,18 +536,18 @@ public class Main {
 				    userManager.getUsers().get(loggedUser).showMarket();
 				    System.out.println(
 					    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				    System.out.print("SELECT THE ID OF A PRODUCT THAT YOU WANT TO REMOVE:~$ ");
+				    System.out.print("SELECT THE ID OF A PRODUCT THAT YOU WANT TO REMOVE: ");
 				    
 				    Integer productRemoveId = null;
 				    isValidChoice = false;
 				    while (!isValidChoice) {
-				    						            try {
+				    						            try {System.out.print(":~$ ");
 				    						            	productRemoveId = sc.nextInt();
 				    						                if (productRemoveId > -1) {
 				    						                    isValidChoice = true;
 				    						                } 
 				    						            } catch (InputMismatchException e) {
-				    						                System.out.println("Invalid input. Please enter a valid number");
+				    						                System.out.println("Invalid input. Please enter a valid number");				    						          
 				    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
 				    						            }
 				    						        }
@@ -589,7 +589,25 @@ public class Main {
 		    System.out.println("{2} UNFOLLOW FRIEND");
 		    System.out.println("{3} MAIN MENU");
 		    System.out.print(":~$ ");
-		    tempChoose = sc.nextInt();
+		    
+		    isValidChoice = false;
+		    while (!isValidChoice) {
+		    						            try {
+		    						                tempChoose = sc.nextInt();
+		    						                if (tempChoose >= 1 && tempChoose <= 3) {
+		    						                    isValidChoice = true;
+		    						                } else {
+		    						                    System.out.println("Please enter a valid option (1, 2 or 3).");
+		    						                    System.out.print(":~$ ");
+		    						                }
+		    						            } catch (InputMismatchException e) {
+		    						                System.out.println("Invalid input. Please enter a valid number (1, 2 or 3).");
+		    						                System.out.print(":~$ ");
+		    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+		    						            }
+		    						        }
+		    						        sc.nextLine(); // Consume the newline character
+		    
 		    System.out.println();
 		    switch (tempChoose) {
 		    case 1:
@@ -601,7 +619,23 @@ public class Main {
 					    System.out.println();
 					    System.out.println("{1} FOLLOW NEW FRIEND");
 					    System.out.println("{2} MAIN MENU");
-					    tempChoose = sc.nextInt();
+					    
+					    isValidChoice = false;
+					    while (!isValidChoice) {
+					    						            try {
+					    						                tempChoose = sc.nextInt();
+					    						                if (tempChoose >= 1 && tempChoose <= 2) {
+					    						                    isValidChoice = true;
+					    						                } else {
+					    						                    System.out.println("Please enter a valid option (1 or 2).");
+					    						                    System.out.print(":~$ ");
+					    						                }
+					    						            } catch (InputMismatchException e) {
+					    						                System.out.println("Invalid input. Please enter a valid number (1 or 2).");
+					    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+					    						            }
+					    						        }
+					    
 					    switch (tempChoose) {
 					    case 1:
 						System.out.println(
@@ -623,11 +657,10 @@ public class Main {
 			break;
 			
 		    case 2:
+		    	System.out.println("TO BACK TYPE 'RETURN'");
 				System.out.println();
 				userManager.getUsers().get(loggedUser).showFollowers();
 				System.out.println();
-				sc.nextLine();
-				System.out.println("TO BACK TYPE 'RETURN'");
 				System.out.print("FRIEND NAME:~$ ");
 				String friendNameRemove = sc.nextLine();
 				
