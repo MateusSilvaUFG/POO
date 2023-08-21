@@ -689,14 +689,50 @@ public class Main {
 		    System.out.println("{2} LIST ALL EVENTS");
 		    System.out.println("{3} MAIN MENU");
 		    System.out.print(":~$ ");
-		    tempChoose = sc.nextInt();
+		    
+		    isValidChoice = false;
+		    while (!isValidChoice) {
+		    						            try {
+		    						                tempChoose = sc.nextInt();
+		    						                if (tempChoose >= 1 && tempChoose <= 3) {
+		    						                    isValidChoice = true;
+		    						                } else {
+		    						                    System.out.println("Please enter a valid option (1, 2 or 3).");
+		    						                    System.out.print(":~$ ");
+		    						                }
+		    						            } catch (InputMismatchException e) {
+		    						                System.out.println("Invalid input. Please enter a valid number (1, 2 or 3).");
+		    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+		    						            }
+		    						        }
+		    						        
+		    
 		    System.out.println();
 		    
 		    switch (tempChoose) {
 		    
 			    case 1:
-					    System.out.print("EVENT'S ID:~$ ");
-					    Integer devEventId = sc.nextInt();
+					    
+					    
+                        Integer devEventId;
+						devEventId = null;
+						isValidChoice = false;
+						while (!isValidChoice) {
+							System.out.print("EVENT'S ID:~$ ");
+							try {
+								devEventId = sc.nextInt();
+								 if (devEventId >= 0) {
+					                    isValidChoice = true;}
+								 
+							} catch (InputMismatchException e) {
+								System.out.println("Invalid input. Please enter a valid number.");
+								sc.nextLine(); // Clear the invalid input from the scanner buffer
+							}
+						}
+						
+					    
+					    
+					    
 					    sc.nextLine();
 					    System.out.print("EVENT'S NAME:~$ ");
 					    String devEventName = sc.nextLine();
@@ -720,7 +756,22 @@ public class Main {
 							System.out.println();
 							System.out.println("{1} EDIT EVENT ~ {2} REMOVE EVENT ~ {3} MAIN MENU");
 							System.out.println(":~$ ");
-							tempChoose = sc.nextInt();
+							
+							isValidChoice = false;
+							while (!isValidChoice) {
+													            try {
+													                tempChoose = sc.nextInt();
+													                if (tempChoose >= 1 && tempChoose <= 3) {
+													                    isValidChoice = true;
+													                } else {
+													                    System.out.println("Please enter a valid option (1, 2 or 3).");
+													                    System.out.print(":~$ ");
+													                }
+													            } catch (InputMismatchException e) {
+													                System.out.println("Invalid input. Please enter a valid number (1, 2 or 3).");
+													                sc.nextLine(); // Clear the invalid input from the scanner buffer
+													            }
+													        }
 							System.out.println();
 								switch (tempChoose) {
 								case 1:
@@ -728,16 +779,48 @@ public class Main {
 								    userManager.getUsers().get(loggedUser).showYourDevEvents();
 								    System.out.println(
 									    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-								    System.out.print("SELECT THE ID OF A EVENT THAT YOU WANT TO EDIT:~$ ");
-								    Integer eventId = sc.nextInt();
-								    sc.nextLine();
+								   
+								    
+								    
+	                                Integer eventId;
+									eventId = null;
+									isValidChoice = false;
+									while (!isValidChoice) {
+										 System.out.print("SELECT THE ID OF A EVENT THAT YOU WANT TO EDIT:~$ ");
+										try {
+											eventId = sc.nextInt();
+											 if (eventId >= 0) {
+								                    isValidChoice = true;}
+											 
+										} catch (InputMismatchException e) {
+											System.out.println("Invalid input. Please enter a valid number.");
+											sc.nextLine(); // Clear the invalid input from the scanner buffer
+										}
+									}
+									sc.nextLine(); // Consume the newline character
 								    System.out.println();
 								    System.out.println("SELECT EVENT'S INFO THAT YOU WANT TO EDIT");
 								    System.out
 									    .println("{1} NAME ~ {2} DATE ~ {3} LOCAL ~ {4} DESCRIPTION ~ {5} CANCEL");
 								    System.out.println(":~$ ");
-								    tempChoose = sc.nextInt();
-								    sc.nextLine();
+								    
+								    
+								    isValidChoice = false;
+								    while (!isValidChoice) {
+								    						            try {
+								    						                tempChoose = sc.nextInt();
+								    						                if (tempChoose >= 1 && tempChoose <= 5) {
+								    						                    isValidChoice = true;
+								    						                } else {
+								    						                    System.out.println("Please enter a valid option (1, 2, 3, 4 or 5).");
+								    						                    System.out.print(":~$ ");
+								    						                }
+								    						            } catch (InputMismatchException e) {
+								    						                System.out.println("Invalid input. Please enter a valid number (1, 2, 3, 4 or 5).");
+								    						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+								    						            }
+								    						        }
+								    						        sc.nextLine(); // Consume the newline character
 								    
 								    switch (tempChoose) {
 										    case 1:
@@ -775,9 +858,25 @@ public class Main {
 								    userManager.getUsers().get(loggedUser).showDevEvents();
 								    System.out.println(
 									    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-								    System.out.print("SELECT THE ID OF THE EVENT THAT YOU WANT TO REMOVE~$ ");
-								    Integer eventDevRemoveId = sc.nextInt();
-								    sc.nextLine();
+							
+								    
+	                                Integer eventDevRemoveId;
+									eventDevRemoveId = null;
+									isValidChoice = false;
+									while (!isValidChoice) {
+									    System.out.print("SELECT THE ID OF THE EVENT THAT YOU WANT TO REMOVE~$ ");
+										try {
+											eventDevRemoveId = sc.nextInt();
+											 if (eventDevRemoveId >= 0) {
+								                    isValidChoice = true;}
+											 
+										} catch (InputMismatchException e) {
+											System.out.println("Invalid input. Please enter a valid number.");
+											sc.nextLine(); // Clear the invalid input from the scanner buffer
+										}
+									}
+									sc.nextLine(); // Consume the newline character
+								    
 								    userManager.getUsers().get(loggedUser).removeDevEvent(eventDevRemoveId);
 								    break;
 								case 3:
