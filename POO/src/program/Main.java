@@ -420,11 +420,12 @@ public class Main {
 					    do {
 						System.out.println();
 						System.out.println("{1} EDIT SALE ~ {2} REMOVE SALE ~ {3} MAIN MENU");
-						System.out.print(":~$ ");
+						
 						
 						isValidChoice = false;
 						while (!isValidChoice) {
 											            try {
+											            	System.out.print(":~$ ");
 											                tempChoose = sc.nextInt();
 											                if (tempChoose >= 1 && tempChoose <= 3) {
 											                    isValidChoice = true;
@@ -496,7 +497,26 @@ public class Main {
 								break;
 							    case 2:
 								System.out.print("NEW PRODUCT PRICE:~$ ");
-								Double editedPrice = sc.nextDouble();
+								
+								
+								
+								Double editedPrice;
+								editedPrice = null;
+								isValidChoice = false;
+								while (!isValidChoice) {
+									System.out.print("PRICE ($):~$ ");
+									try {
+										editedPrice = sc.nextDouble();
+										 if (editedPrice >= 0) {
+							                    isValidChoice = true;}
+										 
+									} catch (InputMismatchException e) {
+										System.out.println("Invalid input. Please enter a valid number.");
+										sc.nextLine(); // Clear the invalid input from the scanner buffer
+									}
+								}
+								sc.nextLine(); // Consume the newline character
+								
 								userManager.getUsers().get(loggedUser).editProductPrice(productId, editedPrice);
 								tempChoose = 0;
 								break;
