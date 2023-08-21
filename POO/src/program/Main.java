@@ -1,6 +1,7 @@
 package program;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import entities.UserManager;
 
@@ -21,7 +22,16 @@ public class Main {
      int choose = 0, tempChoose = 0;
 
 	while (true) {
-	    System.out.println();
+	  
+		System.out.println("  _____ _                 _ ");
+		System.out.println(" |_   _| |               | |");
+		System.out.println("   | | | |__   __ _ _ __ | |");
+		System.out.println("   | | | '_ \\ / _` | '_ \\| |");
+		System.out.println("  _| |_| | | | (_| | | | |_|");
+		System.out.println(" |_____|_| |_|\\__,_|_| |_(_)");
+		System.out.println("                           ");
+		System.out.println("  {Ihan!(/) - CONNECTING}");
+		//	    System.out.println();
 	    do {
 		System.out.println("{1} NEW ACCOUNT ~ {2} LOGIN");
 		System.out.print(":~$ ");
@@ -63,6 +73,14 @@ public class Main {
 	    } while (loggedUser < 0);
 
 	    do {
+		System.out.println("  _____ _                 _ ");
+		System.out.println(" |_   _| |               | |");
+		System.out.println("   | | | |__   __ _ _ __ | |");
+		System.out.println("   | | | '_ \\ / _` | '_ \\| |");
+		System.out.println("  _| |_| | | | (_| | | | |_|");
+		System.out.println(" |_____|_| |_|\\__,_|_| |_(_)");
+		System.out.println("                           ");
+		System.out.println("  {Ihan!(/) - CONNECTING}");
 		System.out.println();
 		System.out.println();
 		System.out.println("                    {LOGGED AS " + userManager.getUsers().get(loggedUser).getName() + "}");
@@ -165,46 +183,96 @@ public class Main {
 		    System.out.println();
 		    	switch (tempChoose) {
 				   case 1:
-						System.out.print("POST ID:~$ ");
-						Integer idPost = sc.nextInt();
-						sc.nextLine();
-						System.out.print("POST CONTENT:~$ ");
-						String content = sc.nextLine();
-						userManager.getUsers().get(loggedUser).addPost(userManager.getUsers().get(loggedUser), idPost, content);
-						System.out.println();
-						break;
+							Integer idPost = null;
+							while (idPost == null) {
+								System.out.print("POST ID:~$ ");
+								try {
+									idPost = sc.nextInt();
+								} catch (InputMismatchException e) {
+									System.out.println("Invalid input. Please enter a valid number.");
+									sc.nextLine(); // Clear the invalid input from the scanner buffer
+								}
+							}
+							sc.nextLine(); // Consume the newline character
+
+							System.out.print("POST CONTENT:~$ ");
+							String content = sc.nextLine();
+							userManager.getUsers().get(loggedUser).addPost(userManager.getUsers().get(loggedUser), idPost, content);
+							System.out.println();
+							break;
+
 				   case 2:
 						if (userManager.getUsers().get(loggedUser).getPosts().isEmpty()) {
 						    System.out.println("{YOU DON'T HAVE ANY POST YET}");
 						} else {
 						    userManager.getUsers().get(loggedUser).showPosts();
-						  do {
-							System.out.println();
-							System.out.println("{1} EDIT POST ~ {2} REMOVE POST ~ {3} MAIN MENU");
-							tempChoose = sc.nextInt();
-							System.out.println();
+						    do {
+						        System.out.println();
+						        System.out.println("{1} EDIT POST ~ {2} REMOVE POST ~ {3} MAIN MENU");
+						        System.out.print(":~$ ");
+				   
+						        boolean isValidChoice = false;
+
+						        while (!isValidChoice) {
+						            try {
+						                tempChoose = sc.nextInt();
+						                if (tempChoose >= 1 && tempChoose <= 3) {
+						                    isValidChoice = true;
+						                } else {
+						                    System.out.println("Please enter a valid option (1, 2, or 3).");
+						                    System.out.print(":~$ ");
+						                }
+						            } catch (InputMismatchException e) {
+						                System.out.println("Invalid input. Please enter a valid number (1, 2, or 3).");
+						                sc.nextLine(); // Clear the invalid input from the scanner buffer
+						            }
+						        }
+
+						        System.out.println();
 						
 							switch (tempChoose) {
 							case 1:
 							    sc.nextLine();
 							    userManager.getUsers().get(loggedUser).showYourPosts();
 							    System.out.println(
-								    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-							    System.out.print("SELECT THE ID OF THE POST THAT YOU WANT TO EDIT:~$ ");
-							    Integer postId = sc.nextInt();
+							        "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+							    Integer postId = null;
+							    
+							    while (postId == null) {
+							        System.out.print("SELECT THE ID OF THE POST THAT YOU WANT TO EDIT:~$ ");
+							        try {
+							            postId = sc.nextInt();
+							        } catch (InputMismatchException e) {
+							            System.out.println("Invalid input. Please enter a valid integer.");
+							            sc.nextLine(); // Clear the invalid input from the scanner buffer
+							        }
+							    }
+							    
 							    System.out.println();
 							    sc.nextLine();
 							    System.out.print("WRITE A NEW CONTENT:~$ ");
 							    String editedContent = sc.nextLine();
 							    userManager.getUsers().get(loggedUser).editPost(postId, editedContent);
 							    break;
+
 							case 2:
 							    sc.nextLine();
 							    userManager.getUsers().get(loggedUser).showPosts();
-							    System.out.print("SELECT THE ID OF THE POST THAT YOU WANT TO REMOVE:~$ ");
-							    postId = sc.nextInt();
-							    userManager.getUsers().get(loggedUser).removePost(postId);
+							    Integer postIdToRemove = null;
+
+							    while (postIdToRemove == null) {
+							        System.out.print("SELECT THE ID OF THE POST THAT YOU WANT TO REMOVE:~$ ");
+							        try {
+							            postIdToRemove = sc.nextInt();
+							        } catch (InputMismatchException e) {
+							            System.out.println("Invalid input. Please enter a valid integer.");
+							            sc.nextLine(); // Clear the invalid input from the scanner buffer
+							        }
+							    }
+
+							    userManager.getUsers().get(loggedUser).removePost(postIdToRemove);
 							    break;
+
 							case 3:
 							    break;
 							}
