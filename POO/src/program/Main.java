@@ -240,6 +240,7 @@ public class Main {
 							    
 							    while (postId == null) {
 							        System.out.print("SELECT THE ID OF THE POST THAT YOU WANT TO EDIT:~$ ");
+							        System.out.print(":~$ ");
 							        try {
 							            postId = sc.nextInt();
 							        } catch (InputMismatchException e) {
@@ -262,6 +263,7 @@ public class Main {
 
 							    while (postIdToRemove == null) {
 							        System.out.print("SELECT THE ID OF THE POST THAT YOU WANT TO REMOVE:~$ ");
+							        System.out.print(":~$ ");
 							        try {
 							            postIdToRemove = sc.nextInt();
 							        } catch (InputMismatchException e) {
@@ -307,22 +309,32 @@ public class Main {
 		    tempChoose = sc.nextInt();
 		    System.out.println();
 		    switch (tempChoose) {
-			    case 1:
-					System.out.println(
-						"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-					System.out.print("PRODUCT'S ID:~$ ");
-					Integer productIdAdd = sc.nextInt();
-					sc.nextLine();
-					System.out.print("PRODUCT:~$ ");
-					String product = sc.nextLine();
-					System.out.print("PRICE ($):~$ ");
-					Double price = sc.nextDouble();
-					sc.nextLine();
-					System.out.print("PRODUCT DESCRIPTION:~$ ");
-					String description = sc.nextLine();
-					userManager.getUsers().get(loggedUser).addProduct(userManager.getUsers().get(loggedUser), productIdAdd, product, price,
-						description);
-					break;
+		    case 1:
+		        do {
+		            System.out.println(
+		                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		            System.out.print("PRODUCT'S ID:~$ ");
+		            
+		            try {
+		                Integer productIdAdd = sc.nextInt();
+		                sc.nextLine();
+		                System.out.print("PRODUCT:~$ ");
+		                String product = sc.nextLine();
+		                System.out.print("PRICE ($):~$ ");
+		                Double price = sc.nextDouble();
+		                sc.nextLine();
+		                System.out.print("PRODUCT DESCRIPTION:~$ ");
+		                String description = sc.nextLine();
+		                userManager.getUsers().get(loggedUser).addProduct(userManager.getUsers().get(loggedUser), productIdAdd, product, price,
+		                    description);
+		                break; // Exit the loop if successful input
+		            } catch (InputMismatchException e) {
+		                System.out.println("Invalid input. Please enter a valid integer for the PRODUCT'S ID.");
+		                sc.nextLine(); // Clear the invalid input from the scanner buffer
+		            }
+		        } while (true); // Continue until a valid input is provided
+		        break;
+
 			    case 2:
 					if (userManager.getUsers().get(loggedUser).getMarketplace().isEmpty()) {
 					    System.out.println("{YOU DON'T HAVE ANY PRODUCT YET}");
@@ -331,6 +343,7 @@ public class Main {
 					    do {
 						System.out.println();
 						System.out.println("{1} EDIT SALE ~ {2} REMOVE SALE ~ {3} MAIN MENU");
+						System.out.print(":~$ ");
 						tempChoose = sc.nextInt();
 						System.out.println();
 						switch (tempChoose) {
