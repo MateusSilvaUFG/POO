@@ -1,5 +1,5 @@
 
-# Sistema de Gerenciamento de Usuários
+# Rede Social
 
 | Matrícula    | Nome                      |
 |--------------|---------------------------|
